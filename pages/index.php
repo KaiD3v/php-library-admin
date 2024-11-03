@@ -79,6 +79,9 @@ session_start();
             case 'books':
                 include "books.php";
                 break;
+            case 'update-book':
+                include "update-book.php";
+                break;
             case 'rented-books':
                 include "rented-books.php";
                 break;

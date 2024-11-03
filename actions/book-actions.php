@@ -25,7 +25,29 @@ switch ($_REQUEST["action"]) {
         }
         break;
     case 'update':
-        # code...
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $coverImg = $_POST['cover_img'];
+        $quantity = $_POST['quantity'];
+
+        $sql = "UPDATE books SET title = :title, description = :description, cover_img = :coverImg, quantity = :quantity WHERE id = :id";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':coverImg', $coverImg);
+        $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Livro atualizado com sucesso.')</script>";
+            echo "<script>location.href='?page=books'</script>";
+        } else {
+            echo "<script>alert('Houve um erro ao atualizar livro.')</script>";
+            echo "<script>location.href='?page=edit-book&id={$id}'</script>";
+        }
         break;
     case 'delete':
         # code...

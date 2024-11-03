@@ -80,7 +80,7 @@ if (isset($_SESSION['email'])) {
                         <p class='card-text flex-grow-1'>{$row->description}</p>
                         <p><b>Quantidade:</b> {$row->quantity}</p>
                         <div class='mt-3'>
-                            <a href='?page=edit-book&id={$row->id}' class='btn btn-warning'>Editar</a>
+                            <a href='?page=update-book&id={$row->id}' class='btn btn-warning'>Editar</a>
                             <button 
                                 data-bs-toggle='modal' 
                                 data-bs-target='#exampleModal' 
