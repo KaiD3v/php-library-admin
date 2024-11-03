@@ -6,8 +6,11 @@ if (isset($_SESSION['email'])) {
     <nav class='navbar navbar-expand-lg navbar-light bg-light mb-4'>
         <div class='container'>
             <ul class='navbar-nav me-auto'>
-                <li class='nav-item'>
+                <li class='nav-item px-4'>
                     <a href='?page=new-book' class='btn btn-primary'>Adicionar Livro</a>
+                </li>
+                <li class='nav-item'>
+                    <a href='?page=rented-books' class='btn btn-primary'>Livros Alugados</a>
                 </li>
             </ul>
         </div>
@@ -15,7 +18,6 @@ if (isset($_SESSION['email'])) {
     ";
 }
 ?>
-
 
 <div class="row g-4">
     <?php
