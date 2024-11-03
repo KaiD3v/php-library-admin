@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['email'] == null) {
+if (!isset($_SESSION["email"])) {
     header('Location: ?page=home');
 }
 ?>

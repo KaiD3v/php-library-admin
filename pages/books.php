@@ -41,7 +41,7 @@ if (isset($_SESSION['email'])) {
                 </div>
             </div>";
         }
-    } else if ($qtd > 0 and $_SESSION['email'] === null) {
+    } else if ($qtd > 0 and !isset($_SESSION["email"])) {
         while ($row = $res->fetchObject()) {
             echo "
                 <div class='col-12 col-sm-6 col-lg-4'> <!-- Responsivo: 1 por linha em mobile, 2 em tablets, 3 em desktops -->
