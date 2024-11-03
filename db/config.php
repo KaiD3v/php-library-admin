@@ -4,4 +4,10 @@ define('USER', 'root');
 define('PASSWORD', '');
 define('DB', 'library_db');
 
-$conn = new MySQLi(HOST, USER, PASSWORD, DB);
+try {
+    $pdo = new PDO("mysql:host=" . HOST . ";dbname=" . DB, USER, PASSWORD);
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro de conexão: " . $e->getMessage());
+}

@@ -40,6 +40,11 @@
                             <i class="bi bi-person-badge"></i> Administradores
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=new-admin">
+                            <i class="bi bi-people"></i> New Admin
+                        </a>
+                    </li>
                 </ul>
 
                 <a class="btn btn-primary ms-lg-3" href="?page=login" role="button">
@@ -60,6 +65,12 @@
                 break;
             case 'admins':
                 include "admins.php";
+                break;
+            case 'new-admin':
+                include "new-admin.php";
+                break;
+            case 'admin-actions':
+                include "../actions/admin-actions.php";
                 break;
             case 'login':
                 include "login.php";
