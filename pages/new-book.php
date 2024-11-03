@@ -5,7 +5,7 @@ if ($_SESSION['email'] == null) {
 ?>
 
 <div class="d-flex justify-content-center align-items-center" style="height: 90vh;">
-    <form action="?page=admin-actions" method="post" class="p-4 rounded shadow-sm" style="width: 100%; max-width: 400px;">
+    <form action="?page=book-actions" method="post" class="p-4 rounded shadow-sm" style="width: 100%; max-width: 400px;">
         <h2 class="mb-4 text-center">Adicionar Administrador</h2>
 
         <input type="hidden" name="action" value="create">
@@ -27,7 +27,7 @@ if ($_SESSION['email'] == null) {
 
         <div class="form-floating mb-4">
             <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Digite uma senha" required>
-            <label for="quantity">Cover Image URL</label>
+            <label for="quantity">Quantidade</label>
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Enviar</button>
