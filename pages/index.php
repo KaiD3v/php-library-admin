@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="?page=home">
                 <img src="https://www.pngkit.com/png/full/25-254635_open-book-icon-png-download-book-black-and.png" alt="LibraryPHP" width="30" height="24" class="me-2">
                 <span>Library<b>PHP</b></span>
             </a>

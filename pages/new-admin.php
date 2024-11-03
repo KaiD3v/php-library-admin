@@ -1,3 +1,10 @@
+<?php
+session_start();
+if ($_SESSION['email'] == null) {
+    header('Location: ?page=home');
+}
+?>
+
 <div class="d-flex justify-content-center align-items-center" style="height: 90vh;">
     <form action="?page=admin-actions" method="post" class="p-4 rounded shadow-sm" style="width: 100%; max-width: 400px;">
         <h2 class="mb-4 text-center">Adicionar Administrador</h2>
