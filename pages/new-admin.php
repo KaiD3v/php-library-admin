@@ -1,5 +1,4 @@
 <?php
-session_start();
 if ($_SESSION['email'] == null) {
     header('Location: ?page=home');
 }

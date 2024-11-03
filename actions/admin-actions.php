@@ -52,4 +52,9 @@ switch ($_REQUEST['action']) {
             }
         }
         break;
+    case 'logout':
+        $_SESSION = [];
+        session_destroy();
+        header("Location: ?page=login");
+        exit();
 }

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,36 +27,46 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="?page=books">
                             <i class="bi bi-book"></i> Livros
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=users">
-                            <i class="bi bi-people"></i> Clientes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=admins">
-                            <i class="bi bi-person-badge"></i> Administradores
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=new-admin">
-                            <i class="bi bi-people"></i> New Admin
-                        </a>
-                    </li>
+                    <?php if (isset($_SESSION['email'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=users">
+                                <i class="bi bi-people"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=admins">
+                                <i class="bi bi-person-badge"></i> Administradores
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=new-admin">
+                                <i class="bi bi-person-plus"></i> Novo Admin
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="?page=admin-actions" method="post">
+                                <input type="hidden" name="action" value="logout">
+                                <button type="submit" class="btn btn-link nav-link">Sair</button>
+                            </form>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=login">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
-
-                <a class="btn btn-primary ms-lg-3" href="?page=login" role="button">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
-                </a>
             </div>
         </div>
     </nav>
+
     <div class="container">
         <?php
         include("../db/config.php");
@@ -74,6 +88,9 @@
                 break;
             case 'login':
                 include "login.php";
+                break;
+            case 'logout':
+                include "logout.php";
                 break;
             default:
                 include "home.php";
