@@ -20,11 +20,19 @@ switch ($_REQUEST['action']) {
             echo "<script>location.href='?page=new-user'</script>";
         }
         break;
-    case "update":
-        // Lógica para atualizar
-        break;
 
     case "delete":
-        // Lógica para deletar
+        $sql = "DELETE FROM customers WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $_REQUEST["id"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Usuário deletado com sucesso.')</script>";
+            echo "<script>location.href='?page=users'</script>";
+        } else {
+            echo "<script>alert('Houve um erro ao deletar usuário.')</script>";
+            echo "<script>location.href='?page=users'</script>";
+        }
+
         break;
 }

@@ -29,11 +29,12 @@ if ($_SESSION['email'] == null) {
             echo "<td>$row->id</td>";
             echo "<td>$row->name</td>";
             echo "<td>$row->email</td>";
+            echo "<td><button onclick=\"location.href='?page=users-actions&action=delete&id=" . $row->id . "'\" class='btn btn-danger'>Delete</button></td>";
             echo "</tr>";
         }
         echo "</tbody>";
     } else {
-        echo "<p class='alert alert-danger'>Ainda não há nenhum administador cadastrado.</P>";
+        echo "<p class='alert alert-danger'>Ainda não há nenhum usuário cadastrado.</P>";
     }
 
     ?>
