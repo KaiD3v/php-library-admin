@@ -34,9 +34,11 @@ if (isset($_SESSION['email'])) {
                 <div class='modal-body'>
                     <p>Você está prestes a alugar um livro. Confirme sua ação.</p>
                     <h1 id='modalBookTitle'></h1> <!-- Atualizado via JS -->
-                    <input type='hidden' id='modalBookId' name='book_id' value=''> <!-- Campo oculto para armazenar o ID do livro -->
                     
-                    <form id='rentForm' action='?page=rent-actions' method='POST'>
+                    <form id='rentForm' action='?page=book-actions' method='POST'>
+                        <input type='hidden' id='modalBookId' name='book_id' value=''> <!-- Campo oculto para armazenar o ID do livro -->
+                        <input type='hidden' value='rent' name='action'/>
+                        
                         <div class='mb-3'>
                             <label for='rented_books_qtd' class='form-label'>Selecione a quantidade:</label>
                             <input type='number' name='rented_books_qtd' id='rented_books_qtd' class='form-control' min='1' required/>
@@ -64,7 +66,6 @@ if (isset($_SESSION['email'])) {
         </div>
     </div>
 ";
-
 
     if ($qtd > 0 and isset($_SESSION['email'])) {
         while ($row = $res->fetchObject()) {
@@ -120,7 +121,7 @@ if (isset($_SESSION['email'])) {
         const id = button.getAttribute('data-id');
 
         const modalTitle = modal.querySelector('.modal-title');
-        const modalBodyInput = modal.querySelector('input[type="hidden"]');
+        const modalBodyInput = modal.querySelector('#modalBookId'); // Corrigido para pegar o input pelo ID
         modalTitle.textContent = 'Alugar Livro: ' + title; // Atualiza o título
         modalBodyInput.value = id; // Atualiza o input com o ID do livro
     });

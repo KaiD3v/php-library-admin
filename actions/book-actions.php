@@ -21,7 +21,7 @@ switch ($_REQUEST["action"]) {
             echo "<script>location.href='?page=books'</script>";
         } else {
             echo "<script>alert('Houve um erro ao cadastrar livro.')</script>";
-            echo "<script>location.href='?page=new-user'</script>";
+            echo "<script>location.href='?page=new-book'</script>";
         }
         break;
     case 'update':
@@ -29,5 +29,50 @@ switch ($_REQUEST["action"]) {
         break;
     case 'delete':
         # code...
+        break;
+    case 'rent':
+        $customerId = $_POST['customer_id'];
+        $bookId = $_POST['book_id'];
+        $rentedBooksQtd = $_POST['rented_books_qtd'];
+
+        // Verificar se a quantidade disponível é suficiente
+        $sqlCheck = "SELECT quantity FROM books WHERE id = :bookId";
+        $stmtCheck = $pdo->prepare($sqlCheck);
+        $stmtCheck->bindParam(':bookId', $bookId);
+        $stmtCheck->execute();
+        $book = $stmtCheck->fetchObject();
+
+        if ($book && $book->quantity >= $rentedBooksQtd) {
+            // Inserir registro na tabela rentals
+            $sql = "INSERT INTO rentals (customer_id, book_id, rented_books_qtd) VALUES (:customerId, :bookId, :rentedBooksQtd)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':customerId', $customerId);
+            $stmt->bindParam(':bookId', $bookId);
+            $stmt->bindParam(':rentedBooksQtd', $rentedBooksQtd);
+
+            if ($stmt->execute()) {
+                // Atualizar a quantidade de livros na tabela books
+                $newQuantity = $book->quantity - $rentedBooksQtd;
+                $sqlUpdate = "UPDATE books SET quantity = :newQuantity WHERE id = :bookId";
+                $stmtUpdate = $pdo->prepare($sqlUpdate);
+                $stmtUpdate->bindParam(':newQuantity', $newQuantity);
+                $stmtUpdate->bindParam(':bookId', $bookId);
+
+                if ($stmtUpdate->execute()) {
+                    echo "<script>alert('Livro alugado com sucesso.')</script>";
+                } else {
+                    echo "<script>alert('Houve um erro ao atualizar a quantidade do livro.')</script>";
+                }
+
+                echo "<script>location.href='?page=books'</script>";
+            } else {
+                echo "<script>alert('Houve um erro ao alugar livro.')</script>";
+                echo "<script>location.href='?page=books'</script>";
+            }
+        } else {
+            echo "<script>alert('Quantidade insuficiente de livros disponíveis para aluguel.')</script>";
+            echo "<script>location.href='?page=books'</script>";
+        }
+
         break;
 }
