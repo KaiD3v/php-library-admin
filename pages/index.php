@@ -18,13 +18,12 @@
                 <span>Library<b>PHP</b></span>
             </a>
 
-            <!-- Botão de alternância para dispositivos menores -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Links de navegação -->
+
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="?page=books">
@@ -32,19 +31,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="?page=users">
                             <i class="bi bi-people"></i> Clientes
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="?page=admins">
                             <i class="bi bi-person-badge"></i> Administradores
                         </a>
                     </li>
                 </ul>
 
-                <!-- Botão de login -->
-                <a class="btn btn-primary ms-lg-3" href="#" role="button">
+                <a class="btn btn-primary ms-lg-3" href="?page=login" role="button">
                     <i class="bi bi-box-arrow-in-right"></i> Login
                 </a>
             </div>
@@ -52,6 +50,7 @@
     </nav>
     <div class="container">
         <?php
+        include("../db/config.php");
         switch (@$_REQUEST["page"]) {
             case 'books':
                 include "books.php";
@@ -59,8 +58,8 @@
             case 'users':
                 include "users.php";
                 break;
-            case 'admin':
-                include "admin.php";
+            case 'admins':
+                include "admins.php";
                 break;
             case 'login':
                 include "login.php";
