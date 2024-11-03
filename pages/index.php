@@ -50,6 +50,11 @@ session_start();
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="?page=new-user">
+                                <i class="bi bi-person-plus"></i> Novo Cliente
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <form action="?page=admin-actions" method="post">
                                 <input type="hidden" name="action" value="logout">
                                 <button type="submit" class="btn btn-link nav-link">Sair</button>
@@ -76,6 +81,12 @@ session_start();
                 break;
             case 'users':
                 include "users.php";
+                break;
+            case 'new-user':
+                include "new-user.php";
+                break;
+            case 'users-actions':
+                include "../actions/user-actions.php";
                 break;
             case 'admins':
                 include "admins.php";
