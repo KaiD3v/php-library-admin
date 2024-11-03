@@ -88,7 +88,7 @@ if (isset($_SESSION['email'])) {
                                 data-id='{$row->id}' 
                                 class='btn btn-success'>Alugar
                             </button>
-                            <a href='?page=delete-book&id={$row->id}' class='btn btn-danger' onclick='return confirm(\"Você tem certeza que deseja deletar este livro?\")'>Deletar</a>
+                            <button onclick=\"location.href='?page=book-actions&action=delete&id=" . $row->id . "'\" class='btn btn-danger'>Delete</button>
                         </div>
                     </div>
                 </div>

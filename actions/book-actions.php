@@ -39,7 +39,7 @@ switch ($_REQUEST["action"]) {
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':coverImg', $coverImg);
         $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             echo "<script>alert('Livro atualizado com sucesso.')</script>";
@@ -50,7 +50,17 @@ switch ($_REQUEST["action"]) {
         }
         break;
     case 'delete':
-        # code...
+        $sql = "DELETE FROM books WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $_REQUEST["id"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Livro deletado com sucesso.')</script>";
+            echo "<script>location.href='?page=books'</script>";
+        } else {
+            echo "<script>alert('Houve um erro ao deletar usuário.')</script>";
+            echo "<script>location.href='?page=books'</script>";
+        }
         break;
     case 'rent':
         $customerId = $_POST['customer_id'];
