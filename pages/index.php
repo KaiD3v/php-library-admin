@@ -79,6 +79,9 @@ session_start();
             case 'books':
                 include "books.php";
                 break;
+            case 'new-book':
+                include "new-book.php";
+                break;
             case 'users':
                 include "users.php";
                 break;
@@ -96,6 +99,9 @@ session_start();
                 break;
             case 'admin-actions':
                 include "../actions/admin-actions.php";
+                break;
+            case 'book-actions':
+                include "../actions/book-actions.php";
                 break;
             case 'login':
                 include "login.php";
